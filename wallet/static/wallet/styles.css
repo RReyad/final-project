@@ -1,0 +1,132 @@
+textarea {
+    min-height: 100px;
+    width: 85%;
+    margin: 5px;
+}
+
+
+.Top_Banner{
+    border-color: rgba(5, 173, 251, 0.431) ;
+    border-style: solid;
+    border-width: thin;
+    max-height: 250;
+    
+    margin: 5px;
+    padding: 10px;
+    
+    
+    float: left;
+    width: 100%;
+    background-color: white;
+   
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+}
+
+.chart_class{
+    border-color: rgba(5, 173, 251, 0.431) ;
+    border-style: solid;
+    border-width: thin;
+    margin: 10px;
+    padding: 10px;
+    float: left;
+   
+
+}
+.Summary{
+   border-color: rgba(5, 173, 251, 0.431) ;
+   border-style: solid;
+   border-width: thin;
+   margin: 10px;
+   padding: 10px;
+   min-height:275px;
+   
+   height:auto !important;
+   position: relative;
+   float: left;
+  }
+
+#Add_To_Wallet_Input{
+   /* max-width: 75%;*/
+   /* display: inline;*/
+    
+
+}
+#Add_To_Wallet_Form{
+   
+   border-color: rgb(228, 226, 226) ;
+   border-style: solid;
+   border-width: thin;
+  
+   
+  
+ }
+
+#Transfer_Form{
+    
+   
+
+   border-color: rgb(228, 226, 226) ;
+   border-style: solid;
+   border-width: thin;
+  
+}
+
+#Transfer_Value_Input{
+   /* max-width: 22%;*/
+  /*  display: inline;*/
+}
+
+#Transfer_To_Input{
+    /*max-width: 22%;*/
+   /* display: inline;*/
+}
+
+#Transfer_To_Description{
+   /* max-width: 22%;*/
+  /*  display: inline;*/
+}
+
+#Transfer_To_Category{
+    /*max-width: 22%;*/
+  /*  display: inline;*/
+}
+
+table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5;
+        
+  }
+
+  td, th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    
+  }
+  
+  th{
+      background-color: deepskyblue;
+     
+  }
+  tr:nth-child(even){
+    background-color: #dddddd;
+  }
+  tr:hover {
+      background-color: dodgerblue;
+       
+}
+
+#bar-chart{
+    
+    padding: 5;
+      
+  }
+#pie-chart{
+    
+    padding:5;
+      
+  }

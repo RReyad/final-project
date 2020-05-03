@@ -1,0 +1,79 @@
+{% extends "wallet/layout.html" %}
+{% load static %}
+
+
+{% block body  %}
+
+<div class ="Top_Banner">   
+    <div class="Summary">
+      
+            <p > <strong> {{ user.username }}  </strong></p> 
+            <p id ="Wallet"> <strong> Wallet Balance  </strong></p>
+            <p> <strong> Add Money To Wallet </strong></p>
+            
+           <form id = "Add_To_Wallet_Form" >
+               
+                 <input type="number" step="0.5" class="form-control" min="0" max="500" id="Add_To_Wallet_Input" ></input>
+                <input type="submit" value="Add" class="btn btn-sm btn-outline-primary" id="Add_To_Wallet_Submit"/>
+            </form>
+    </div>
+
+    <div class = "Summary">
+        <p> <strong> Transfer To Another Wallet  </strong></p>
+                <form id = "Transfer_Form" >
+                    <input type="number" step="0.5" class="form-control" id="Transfer_Value_Input" placeholder="Amount" ></input>
+                    <input type="text" class="form-control" id="Transfer_To_Input" placeholder="Transfer To"> </<input>
+                    <input type="text" class="form-control" id="Transfer_To_Description" placeholder="Discription"> </<sele>
+                    <select class="form-control" id="Transfer_To_Category" placeholder="Category">  
+                        <option value = 5> Others </option>
+                        <option value = 1 > Food </option>
+                        <option value = 2> Fuel </option>
+                        <option value = 3> Utilities </option>
+                        <option value = 4> Rentals </option>
+                        <option value = 0> Remmitance To Friend </option>
+                    </select>
+                    <input type="submit" value="Transfer" class="btn btn-sm btn-outline-primary" id="Transfer_Submit"/>
+                </form>
+                     
+    </div>
+    
+
+    <div class ="Summary">
+            <p> <strong> Spend Analytics </strong></p>
+            <div class ="chart_class"> 
+                <canvas id="bar-chart"  width = "400" height="170" ></canvas>
+            </div>
+            <div class ="chart_class"> 
+                    <canvas id="pie-chart" width = "400" height="170" ></canvas>
+            </div>
+           
+           
+    </div>
+   
+    
+    
+</div>
+    <div >
+        <table id ="Transactions_list">
+            <tr>
+                <th> From </th>
+                <th> To </th>
+                <th> Description </th>
+                <th> Value </th>
+                <th> Type  </th>
+                <th> Category </th>
+                <th> Time Stamp </th>
+            </tr>
+        </table>        
+
+    </div>
+
+    
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'wallet/index.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+{% endblock %}
