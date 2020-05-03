@@ -78,11 +78,13 @@ def add_to_wallet(request):
         return JsonResponse({"error": "POST request required."}, status=400)
     #get data from API input in body
     data = json.loads(request.body)
+    #get the wallet of current logged in user
     get_wallet = Wallet.objects.get(owner = request.user)
     current_wallet_balance = get_wallet.balance
     amount_added_to_wallet = float(data.get("amount"))
     get_wallet.balance = current_wallet_balance + amount_added_to_wallet
     get_wallet.save()
+    #save one transaction for top up
     transaction = Transaction(
         from_user = request.user,
         to_user = request.user,
@@ -104,14 +106,18 @@ def transfer_to_wallet(request):
         return JsonResponse({"error": "POST request required."}, status=400)
     #get data from API input in body
     data = json.loads(request.body)
+    #get the from wallet as current logged in user
     get_from_wallet = Wallet.objects.get(owner = request.user)
+    #check if transfer to user exists
     get_to_user_input = data.get("transfer_to")
     try:
          get_to_user = User.objects.get(username = get_to_user_input)
+    #if the transfer to user does not exist return an error
     except User.DoesNotExist:
             return JsonResponse({
                 "error": f"User does not exist."
             }, status=400)
+    # if the transfer to user is the same as transfer from user return an error
     if get_to_user == request.user:
              return JsonResponse({
                 "error": "You cannot transfer to yourself."
@@ -120,12 +126,14 @@ def transfer_to_wallet(request):
     current_from_wallet_balance = get_from_wallet.balance
     current_to_wallet_balance = get_to_wallet.balance
     amount_transferred = float(data.get("amount"))
+    #check if there is sufficient funds in wallet 
     if amount_transferred > current_from_wallet_balance:
         return JsonResponse({"error": "You don't have sufficient funds for the transaction"}, status=400)
     get_from_wallet.balance = current_from_wallet_balance - amount_transferred
     get_from_wallet.save()
     get_to_wallet.balance = current_to_wallet_balance + amount_transferred
     get_to_wallet.save()
+    #create one transaction for debit
     transaction_debit = Transaction(
         from_user = request.user,
         to_user = get_to_user,
@@ -136,6 +144,7 @@ def transfer_to_wallet(request):
         transaction_relevant_user = request.user        
         )
     transaction_debit.save()
+    #create one transaction for credit
     transaction_credit = Transaction(
         from_user = request.user,
         to_user = get_to_user,
